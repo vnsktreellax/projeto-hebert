@@ -62,9 +62,9 @@
             padding: 0 20px;
         }
 
-        /* Header sofisticado */
+        /* HEADER COMPLETAMENTE ATUALIZADO */
         header {
-            background-color: rgba(255, 255, 255, 0.95);
+            background-color: rgba(255, 255, 255, 0.98);
             padding: 15px 0;
             position: fixed;
             width: 100%;
@@ -79,6 +79,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
 
         .logo {
@@ -92,6 +93,7 @@
             overflow: hidden;
             display: flex;
             align-items: center;
+            z-index: 1002;
         }
 
         .logo-main {
@@ -124,32 +126,18 @@
             font-weight: 600;
         }
 
-        .logo-badge {
-            position: absolute;
-            top: -8px;
-            right: -15px;
-            background: var(--accent);
-            color: white;
-            font-size: 0.7rem;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-weight: 700;
-            transform: rotate(15deg);
-            animation: pulse 2s infinite;
+        /* NAVEGAÇÃO PRINCIPAL - DESKTOP */
+        .desktop-nav {
+            display: flex;
         }
 
-        @keyframes pulse {
-            0%, 100% { transform: rotate(15deg) scale(1); }
-            50% { transform: rotate(15deg) scale(1.1); }
-        }
-
-        nav ul {
+        .desktop-nav ul {
             display: flex;
             list-style: none;
             gap: 30px;
         }
 
-        nav ul li a {
+        .desktop-nav ul li a {
             color: var(--text);
             text-decoration: none;
             font-weight: 500;
@@ -160,7 +148,7 @@
             padding: 5px 0;
         }
 
-        nav ul li a::after {
+        .desktop-nav ul li a::after {
             content: '';
             position: absolute;
             bottom: 0;
@@ -171,7 +159,7 @@
             transition: width 0.3s ease;
         }
 
-        nav ul li a:hover::after {
+        .desktop-nav ul li a:hover::after {
             width: 100%;
         }
 
@@ -193,16 +181,87 @@
             transform: translateY(-2px);
         }
 
-        .mobile-menu {
+        /* MENU MOBILE - COMPLETAMENTE REFEITO */
+        .mobile-menu-btn {
             display: none;
             font-size: 1.5rem;
             cursor: pointer;
             color: var(--dark);
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+            z-index: 1001;
+            padding: 8px;
+            border-radius: 6px;
+            background: transparent;
+            border: none;
+            width: 44px;
+            height: 44px;
+            justify-content: center;
+            align-items: center;
         }
 
-        .mobile-menu.active {
+        .mobile-menu-btn:hover {
+            background-color: rgba(37, 99, 235, 0.05);
+        }
+
+        .mobile-menu-btn.active {
             transform: rotate(90deg);
+            color: var(--primary);
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            gap: 25px;
+            z-index: 999;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.3s ease;
+        }
+
+        .mobile-nav.active {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .mobile-nav ul {
+            list-style: none;
+            text-align: center;
+        }
+
+        .mobile-nav ul li {
+            margin-bottom: 20px;
+        }
+
+        .mobile-nav ul li a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.3rem;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            padding: 10px 20px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+
+        .mobile-nav ul li a:hover {
+            background-color: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+        }
+
+        .mobile-nav .header-actions {
+            margin-top: 30px;
         }
 
         /* Hero com animação e espaço para foto 3D */
@@ -384,7 +443,6 @@
             font-size: 1.1rem;
             text-align: center;
             padding: 20px;
-            
         }
 
         .floating-products {
@@ -971,21 +1029,9 @@
             transition: width 0.3s ease;
         }
 
-        /* Responsividade */
-        @media (max-width: 1200px) {
-            .container {
-                padding: 0 30px;
-            }
-            
-            .hero-title {
-                font-size: 2.8rem;
-            }
-            
-            .section-title {
-                font-size: 2.2rem;
-            }
-        }
+        /* ========== RESPONSIVIDADE ATUALIZADA ========== */
 
+        /* Tablets e laptops pequenos */
         @media (max-width: 1024px) {
             .hero-container {
                 grid-template-columns: 1fr;
@@ -1018,38 +1064,19 @@
             }
         }
 
+        /* Tablets menores e dispositivos móveis grandes */
         @media (max-width: 768px) {
             .container {
                 padding: 0 20px;
             }
             
-            nav ul {
+            /* NAVEGAÇÃO RESPONSIVA - COMPLETAMENTE ATUALIZADA */
+            .desktop-nav {
                 display: none;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                width: 100%;
-                background-color: white;
-                flex-direction: column;
-                padding: 20px;
-                gap: 15px;
-                box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-                border-radius: 0 0 16px 16px;
-                z-index: 1000;
-                animation: slideDown 0.3s ease;
             }
-
-            @keyframes slideDown {
-                from { opacity: 0; transform: translateY(-10px); }
-                to { opacity: 1; transform: translateY(0); }
-            }
-
-            nav ul.show {
+            
+            .mobile-menu-btn {
                 display: flex;
-            }
-
-            .mobile-menu {
-                display: block;
             }
             
             .header-actions {
@@ -1085,15 +1112,28 @@
             .contact-form {
                 padding: 30px 20px;
             }
-        }
-
-        @media (max-width: 576px) {
+            
+            /* Melhorias para seções */
             .hero {
                 height: auto;
                 min-height: 100vh;
                 padding: 40px 0;
             }
             
+            .highlights,
+            .products,
+            .about,
+            .contact {
+                padding: 60px 0;
+            }
+            
+            .section-header {
+                margin-bottom: 40px;
+            }
+        }
+
+        /* Dispositivos móveis médios */
+        @media (max-width: 576px) {
             .hero-title {
                 font-size: 1.8rem;
             }
@@ -1150,8 +1190,26 @@
                 flex-direction: column;
                 gap: 15px;
             }
+            
+            /* Melhorias para elementos menores */
+            .highlight-image {
+                height: 300px;
+            }
+            
+            .product-image {
+                height: 200px;
+            }
+            
+            .about-image img {
+                height: 400px;
+            }
+            
+            .contact-method {
+                padding: 12px;
+            }
         }
 
+        /* Dispositivos móveis pequenos */
         @media (max-width: 400px) {
             .container {
                 padding: 0 15px;
@@ -1177,6 +1235,25 @@
             .floating-product {
                 width: 60px;
                 height: 60px;
+            }
+            
+            /* Ajustes finos para elementos muito pequenos */
+            .btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 0.9rem;
+            }
+            
+            .hero-description {
+                font-size: 0.95rem;
+            }
+            
+            .highlight-overlay,
+            .product-info {
+                padding: 15px;
             }
         }
 
@@ -1208,6 +1285,23 @@
             .image-frame {
                 height: 280px;
             }
+            
+            /* Ajuste para menu mobile em landscape */
+            .mobile-nav {
+                padding: 10px;
+                gap: 15px;
+            }
+            
+            .mobile-nav ul li a {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Melhorias para telas muito pequenas em altura */
+        @media (max-height: 600px) {
+            .hero {
+                min-height: 600px;
+            }
         }
     </style>
 </head>
@@ -1217,18 +1311,15 @@
         <div class="progress-bar" id="progressBar"></div>
     </div>
 
-    <!-- Header -->
+    <!-- Header COMPLETAMENTE ATUALIZADO -->
     <header>
         <div class="container header-container">
             <a href="#" class="logo">
                 <span class="logo-main">HC</span>
                 <span class="logo-store">STORE</span>
-                <span class="logo-badge">NEW</span>
             </a>
-            <div class="mobile-menu">
-                <i class="fas fa-bars"></i>
-            </div>
-            <nav>
+            
+            <nav class="desktop-nav">
                 <ul>
                     <li><a href="#home">Início</a></li>
                     <li><a href="#highlights">Destaques</a></li>
@@ -1237,9 +1328,27 @@
                     <li><a href="#contact">Contato</a></li>
                 </ul>
             </nav>
+            
             <div class="header-actions">
                 <a href="#"><i class="fas fa-search"></i></a>
             </div>
+            
+            <button class="mobile-menu-btn" aria-label="Abrir menu">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav class="mobile-nav">
+                <ul>
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#highlights">Destaques</a></li>
+                    <li><a href="#products">Produtos</a></li>
+                    <li><a href="#about">Sobre</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+                <div class="header-actions">
+                    <a href="#"><i class="fas fa-search"></i></a>
+                </div>
+            </nav>
         </div>
     </header>
 
@@ -1261,8 +1370,7 @@
                 <div class="hero-image-container">
                     <div class="image-frame">
                         <div class="placeholder-image">
-                             <img src="hebert-ft3d.png" alt="Hebert - HC Store" style="width:215%; height:150%; object-fit:cover;">
-                           
+                            <img src="hebert-ft3d.png" alt="Hebert - HC Store" style="width:215%; height:150%; object-fit:cover;">
                         </div>
                     </div>
                     
@@ -1504,21 +1612,46 @@
                 productsGrid.appendChild(productCard);
             });
 
-            // Menu mobile
-            const mobileMenu = document.querySelector('.mobile-menu');
-            const navMenu = document.querySelector('nav ul');
+            // NAVEGAÇÃO MOBILE COMPLETAMENTE REFEITA
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const mobileNav = document.querySelector('.mobile-nav');
+            const body = document.querySelector('body');
             
-            mobileMenu.addEventListener('click', function() {
-                navMenu.classList.toggle('show');
-                mobileMenu.classList.toggle('active');
+            mobileMenuBtn.addEventListener('click', function() {
+                mobileNav.classList.toggle('active');
+                mobileMenuBtn.classList.toggle('active');
+                
+                // Prevenir scroll quando menu estiver aberto
+                if (mobileNav.classList.contains('active')) {
+                    body.style.overflow = 'hidden';
+                    mobileMenuBtn.setAttribute('aria-label', 'Fechar menu');
+                } else {
+                    body.style.overflow = '';
+                    mobileMenuBtn.setAttribute('aria-label', 'Abrir menu');
+                }
             });
 
             // Fechar menu ao clicar em um link
-            document.querySelectorAll('nav ul li a').forEach(link => {
+            document.querySelectorAll('.mobile-nav a').forEach(link => {
                 link.addEventListener('click', function() {
-                    navMenu.classList.remove('show');
-                    mobileMenu.classList.remove('active');
+                    mobileNav.classList.remove('active');
+                    mobileMenuBtn.classList.remove('active');
+                    body.style.overflow = '';
+                    mobileMenuBtn.setAttribute('aria-label', 'Abrir menu');
                 });
+            });
+
+            // Fechar menu ao clicar fora dele
+            document.addEventListener('click', function(event) {
+                const isClickInsideNav = mobileNav.contains(event.target);
+                const isClickOnMenuButton = mobileMenuBtn.contains(event.target);
+                
+                if (!isClickInsideNav && !isClickOnMenuButton && mobileNav.classList.contains('active')) {
+                    mobileNav.classList.remove('active');
+                    mobileMenuBtn.classList.remove('active');
+                    body.style.overflow = '';
+                    mobileMenuBtn.setAttribute('aria-label', 'Abrir menu');
+                }
             });
 
             // Formulário de contato
@@ -1591,11 +1724,6 @@
                         this.style.transform = 'rotateY(0deg) rotateX(0deg) scale(1)';
                     });
                 }
-            }
-            
-            // Melhorar a experiência em dispositivos móveis
-            if ('ontouchstart' in window) {
-                document.body.classList.add('touch-device');
             }
         });
     </script>
