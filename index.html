@@ -108,30 +108,29 @@
             color: var(--primary);
             position: relative;
             display: inline-block;
+            background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientShift 3s ease infinite;
         }
 
-        .logo-main::before {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary), var(--accent), var(--primary));
-            z-index: -1;
-            border-radius: 8px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .logo:hover .logo-main::before {
-            opacity: 0.1;
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
         }
 
         .logo-store {
             color: var(--dark);
             margin-left: 5px;
             font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .logo:hover .logo-store {
+            color: var(--primary);
         }
 
         /* NAVEGAÇÃO PRINCIPAL - DESKTOP */
@@ -217,7 +216,6 @@
         }
 
         .mobile-nav {
-            display: none;
             position: fixed;
             top: 0;
             left: 0;
@@ -232,14 +230,16 @@
             gap: 25px;
             z-index: 999;
             opacity: 0;
+            visibility: hidden;
             transform: translateY(-20px);
             transition: all 0.3s ease;
         }
 
         .mobile-nav.active {
-            display: flex;
             opacity: 1;
+            visibility: visible;
             transform: translateY(0);
+            display: flex;
         }
 
         .mobile-nav ul {
@@ -1145,6 +1145,22 @@
                 max-width: 100%;
                 overflow-x: hidden;
             }
+            
+            /* Ajuste dos produtos flutuantes para telas menores */
+            .floating-product:nth-child(1) {
+                top: 15%;
+                left: 5px;
+            }
+            
+            .floating-product:nth-child(2) {
+                bottom: 25%;
+                right: 5px;
+            }
+            
+            .floating-product:nth-child(3) {
+                top: 55%;
+                left: 5px;
+            }
         }
 
         /* Dispositivos móveis médios */
@@ -1176,15 +1192,18 @@
             }
             
             .floating-product:nth-child(1) {
-                left: -5px;
+                top: 10%;
+                left: 10px;
             }
             
             .floating-product:nth-child(2) {
-                right: -10px;
+                bottom: 20%;
+                right: 10px;
             }
             
             .floating-product:nth-child(3) {
-                left: -15px;
+                top: 60%;
+                left: 10px;
             }
             
             .section-title {
@@ -1262,6 +1281,21 @@
                 height: 60px;
             }
             
+            .floating-product:nth-child(1) {
+                top: 5%;
+                left: 15px;
+            }
+            
+            .floating-product:nth-child(2) {
+                bottom: 15%;
+                right: 15px;
+            }
+            
+            .floating-product:nth-child(3) {
+                top: 65%;
+                left: 15px;
+            }
+            
             /* Ajustes finos para elementos muito pequenos */
             .btn {
                 padding: 10px 20px;
@@ -1325,6 +1359,22 @@
             
             .mobile-nav ul li a {
                 font-size: 0.9rem;
+            }
+            
+            /* Ajuste dos produtos flutuantes em landscape */
+            .floating-product:nth-child(1) {
+                top: 5%;
+                left: 10px;
+            }
+            
+            .floating-product:nth-child(2) {
+                bottom: 10%;
+                right: 10px;
+            }
+            
+            .floating-product:nth-child(3) {
+                top: 40%;
+                left: 10px;
             }
         }
 
