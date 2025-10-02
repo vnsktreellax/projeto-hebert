@@ -27,7 +27,60 @@
             --success: #10b981;
         }
 
-             /* Custom Scrollbar */
+        /* CORREÇÕES ESPECÍFICAS PARA SAFARI */
+        /* Reset mais agressivo para elementos problemáticos */
+        html, body {
+            -webkit-text-size-adjust: 100%;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Correção para flexbox no Safari */
+        .nav-container, .hero-container, .about-content, .contact-container {
+            display: -webkit-flex;
+            display: flex;
+        }
+
+        /* Correção para grid no Safari */
+        .highlights-grid, .products-grid, .footer-content {
+            display: -webkit-grid;
+            display: grid;
+        }
+
+        /* Garantir que elementos com position: fixed funcionem corretamente */
+        .main-header {
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+        }
+
+        /* Correção para animações e transformações */
+        .image-frame, .highlight-card, .product-card {
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        /* Garantir que gradientes funcionem corretamente */
+        .logo-gradient, .btn {
+            -webkit-background-clip: text;
+            background-clip: text;
+        }
+
+        /* Garantir que o backdrop-filter funcione */
+        .main-header, .mobile-menu {
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Correção para elementos com overflow */
+        .image-frame, .highlight-card, .product-card {
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* FIM DAS CORREÇÕES ESPECÍFICAS PARA SAFARI */
+
+        /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -45,7 +98,6 @@
         ::-webkit-scrollbar-thumb:hover {
             background: linear-gradient(180deg, var(--primary-light), var(--secondary));
         }
-
 
         body {
             background-color: var(--light);
@@ -71,7 +123,6 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(10px);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
         }
@@ -229,7 +280,6 @@
             max-width: 300px;
             height: 100vh;
             background-color: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
             flex-direction: column;
             justify-content: flex-start;
             align-items: flex-start;
