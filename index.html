@@ -27,7 +27,7 @@
             --success: #10b981;
         }
 
-        /* Custom Scrollbar */
+             /* Custom Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -46,6 +46,7 @@
             background: linear-gradient(180deg, var(--primary-light), var(--secondary));
         }
 
+
         body {
             background-color: var(--light);
             color: var(--text);
@@ -53,9 +54,6 @@
             line-height: 1.6;
             overflow-x: hidden;
             scroll-behavior: smooth;
-            /* Prevenir espaçamento lateral no Safari */
-            width: 100%;
-            position: relative;
         }
 
         .container {
@@ -63,12 +61,10 @@
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
-            /* Garantir que não haja overflow */
-            overflow: hidden;
         }
 
-        /* HEADER COMPLETAMENTE ATUALIZADO */
-        header {
+        /* ========== NOVO NAVBAR ========== */
+        .main-header {
             background-color: rgba(255, 255, 255, 0.98);
             padding: 15px 0;
             position: fixed;
@@ -78,36 +74,29 @@
             backdrop-filter: blur(10px);
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
             transition: all 0.3s ease;
-            /* Prevenir espaçamento lateral */
-            left: 0;
-            right: 0;
         }
 
-        .header-container {
+        .nav-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: relative;
         }
 
-        .logo {
+        .brand-logo {
             font-family: 'Montserrat', sans-serif;
             font-size: 2rem;
             font-weight: 800;
             color: var(--dark);
             text-decoration: none;
             letter-spacing: 1px;
-            position: relative;
-            overflow: hidden;
             display: flex;
             align-items: center;
             z-index: 1002;
         }
 
-        .logo-main {
+        .logo-gradient {
             color: var(--primary);
-            position: relative;
-            display: inline-block;
             background: linear-gradient(90deg, var(--primary), var(--secondary), var(--accent));
             background-size: 200% 200%;
             -webkit-background-clip: text;
@@ -122,29 +111,29 @@
             100% { background-position: 0% 50%; }
         }
 
-        .logo-store {
+        .logo-text {
             color: var(--dark);
             margin-left: 5px;
             font-weight: 600;
             transition: color 0.3s ease;
         }
 
-        .logo:hover .logo-store {
+        .brand-logo:hover .logo-text {
             color: var(--primary);
         }
 
-        /* NAVEGAÇÃO PRINCIPAL - DESKTOP */
-        .desktop-nav {
+        /* Navegação Principal - Desktop */
+        .main-nav {
             display: flex;
         }
 
-        .desktop-nav ul {
+        .nav-list {
             display: flex;
             list-style: none;
             gap: 30px;
         }
 
-        .desktop-nav ul li a {
+        .nav-link {
             color: var(--text);
             text-decoration: none;
             font-weight: 500;
@@ -155,7 +144,7 @@
             padding: 5px 0;
         }
 
-        .desktop-nav ul li a::after {
+        .nav-link::after {
             content: '';
             position: absolute;
             bottom: 0;
@@ -166,30 +155,30 @@
             transition: width 0.3s ease;
         }
 
-        .desktop-nav ul li a:hover::after {
+        .nav-link:hover::after {
             width: 100%;
         }
 
-        .header-actions {
+        .nav-actions {
             display: flex;
             gap: 20px;
             align-items: center;
         }
 
-        .header-actions a {
+        .nav-icon {
             color: var(--dark);
             text-decoration: none;
             font-size: 1.1rem;
             transition: all 0.3s ease;
         }
 
-        .header-actions a:hover {
+        .nav-icon:hover {
             color: var(--primary);
             transform: translateY(-2px);
         }
 
-        /* MENU MOBILE - COMPLETAMENTE REFEITO */
-        .mobile-menu-btn {
+        /* Menu Mobile - NOVA IMPLEMENTAÇÃO */
+        .hamburger-btn {
             display: none;
             font-size: 1.5rem;
             cursor: pointer;
@@ -204,76 +193,113 @@
             height: 44px;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
         }
 
-        .mobile-menu-btn:hover {
+        .hamburger-btn:hover {
             background-color: rgba(37, 99, 235, 0.05);
         }
 
-        .mobile-menu-btn.active {
-            transform: rotate(90deg);
-            color: var(--primary);
+        .hamburger-btn.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
         }
 
-        .mobile-nav {
+        .hamburger-btn.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-btn.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        .hamburger-line {
+            display: block;
+            width: 20px;
+            height: 2px;
+            background-color: var(--dark);
+            margin: 2px 0;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu {
             position: fixed;
             top: 0;
-            left: 0;
-            width: 100%;
+            right: -100%;
+            width: 80%;
+            max-width: 300px;
             height: 100vh;
             background-color: rgba(255, 255, 255, 0.98);
             backdrop-filter: blur(10px);
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-            gap: 25px;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding: 100px 30px 30px;
+            gap: 20px;
             z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-20px);
-            transition: all 0.3s ease;
-            display: flex; /* Adicionado para garantir que seja flex quando ativo */
+            transition: right 0.4s ease;
+            box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
         }
 
-        .mobile-nav.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
+        .mobile-menu.active {
+            right: 0;
         }
 
-        .mobile-nav ul {
+        .mobile-nav-list {
             list-style: none;
-            text-align: center;
+            width: 100%;
         }
 
-        .mobile-nav ul li {
-            margin-bottom: 20px;
+        .mobile-nav-item {
+            margin-bottom: 15px;
+            width: 100%;
         }
 
-        .mobile-nav ul li a {
+        .mobile-nav-link {
             color: var(--text);
             text-decoration: none;
             font-weight: 500;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             letter-spacing: 0.5px;
             transition: all 0.3s ease;
-            padding: 10px 20px;
+            padding: 12px 15px;
             border-radius: 8px;
-            display: inline-block;
+            display: block;
+            width: 100%;
         }
 
-        .mobile-nav ul li a:hover {
+        .mobile-nav-link:hover {
             background-color: rgba(37, 99, 235, 0.1);
             color: var(--primary);
         }
 
-        .mobile-nav .header-actions {
+        .mobile-nav-actions {
             margin-top: 30px;
-            display: flex; /* Garantir que seja exibido no mobile */
+            display: flex;
+            gap: 15px;
+            width: 100%;
+            justify-content: center;
         }
 
-        /* Hero com animação e espaço para foto 3D */
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 998;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .menu-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Hero Section */
         .hero {
             height: 100vh;
             display: flex;
@@ -1038,7 +1064,7 @@
             transition: width 0.3s ease;
         }
 
-        /* ========== RESPONSIVIDADE ATUALIZADA ========== */
+        /* ========== RESPONSIVIDADE ========== */
 
         /* Tablets e laptops pequenos */
         @media (max-width: 1024px) {
@@ -1079,17 +1105,17 @@
                 padding: 0 15px;
             }
             
-            /* NAVEGAÇÃO RESPONSIVA - COMPLETAMENTE ATUALIZADA */
-            .desktop-nav {
+            /* NAVEGAÇÃO RESPONSIVA - NOVA IMPLEMENTAÇÃO */
+            .main-nav {
                 display: none;
             }
             
-            .mobile-menu-btn {
+            .nav-actions {
+                display: none;
+            }
+            
+            .hamburger-btn {
                 display: flex;
-            }
-            
-            .header-actions {
-                display: none;
             }
             
             .hero-title {
@@ -1140,13 +1166,6 @@
                 margin-bottom: 40px;
             }
             
-            /* Corrigir espaçamento lateral no Safari */
-            .container, header {
-                width: 100%;
-                max-width: 100%;
-                overflow-x: hidden;
-            }
-            
             /* Ajuste dos produtos flutuantes para telas menores */
             .floating-product:nth-child(1) {
                 top: 15%;
@@ -1174,7 +1193,7 @@
                 grid-template-columns: 1fr;
             }
             
-            .logo {
+            .brand-logo {
                 font-size: 1.7rem;
             }
             
@@ -1317,9 +1336,14 @@
             }
             
             /* Melhorias para o menu mobile */
-            .mobile-nav ul li a {
+            .mobile-nav-link {
                 font-size: 1.1rem;
                 padding: 8px 16px;
+            }
+            
+            .mobile-menu {
+                width: 85%;
+                padding: 100px 20px 20px;
             }
         }
 
@@ -1331,72 +1355,6 @@
                 transition-duration: 0.01ms !important;
             }
         }
-
-        /* Melhorias para orientação paisagem em dispositivos móveis */
-        @media (max-height: 500px) and (orientation: landscape) {
-            .hero {
-                height: auto;
-                min-height: 100vh;
-                padding: 80px 0 40px;
-            }
-            
-            .hero-container {
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .hero-image-container {
-                height: 300px;
-            }
-            
-            .image-frame {
-                height: 280px;
-            }
-            
-            /* Ajuste para menu mobile em landscape */
-            .mobile-nav {
-                padding: 10px;
-                gap: 15px;
-            }
-            
-            .mobile-nav ul li a {
-                font-size: 0.9rem;
-            }
-            
-            /* Ajuste dos produtos flutuantes em landscape */
-            .floating-product:nth-child(1) {
-                top: 5%;
-                left: 10px;
-            }
-            
-            .floating-product:nth-child(2) {
-                bottom: 10%;
-                right: 10px;
-            }
-            
-            .floating-product:nth-child(3) {
-                top: 40%;
-                left: 10px;
-            }
-        }
-
-        /* Melhorias para telas muito pequenas em altura */
-        @media (max-height: 600px) {
-            .hero {
-                min-height: 600px;
-            }
-        }
-        
-        /* Correção específica para Safari iOS */
-        @supports (-webkit-touch-callout: none) {
-            .hero {
-                height: auto;
-                min-height: 100vh;
-            }
-            
-            .mobile-nav {
-                -webkit-overflow-scrolling: touch;
-            }
-        }
     </style>
 </head>
 <body>
@@ -1405,48 +1363,52 @@
         <div class="progress-bar" id="progressBar"></div>
     </div>
 
-    <!-- Header COMPLETAMENTE ATUALIZADO -->
-    <header>
-        <div class="container header-container">
-            <a href="#" class="logo">
-                <span class="logo-main">HC</span>
-                <span class="logo-store">STORE</span>
+    <!-- NOVO NAVBAR -->
+    <header class="main-header">
+        <div class="container nav-container">
+            <a href="#" class="brand-logo">
+                <span class="logo-gradient">HC</span>
+                <span class="logo-text">STORE</span>
             </a>
             
-            <nav class="desktop-nav">
-                <ul>
-                    <li><a href="#home">Início</a></li>
-                    <li><a href="#highlights">Destaques</a></li>
-                    <li><a href="#products">Produtos</a></li>
-                    <li><a href="#about">Sobre</a></li>
-                    <li><a href="#contact">Contato</a></li>
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link">Início</a></li>
+                    <li><a href="#highlights" class="nav-link">Destaques</a></li>
+                    <li><a href="#products" class="nav-link">Produtos</a></li>
+                    <li><a href="#about" class="nav-link">Sobre</a></li>
+                    <li><a href="#contact" class="nav-link">Contato</a></li>
                 </ul>
             </nav>
             
-            <div class="header-actions">
-                <a href="#"><i class="fas fa-search"></i></a>
+            <div class="nav-actions">
+                <a href="#" class="nav-icon"><i class="fas fa-search"></i></a>
             </div>
             
-            <button class="mobile-menu-btn" aria-label="Abrir menu">
-                <i class="fas fa-bars"></i>
+            <button class="hamburger-btn" aria-label="Abrir menu">
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
             </button>
             
-            <nav class="mobile-nav">
-                <ul>
-                    <li><a href="#home">Início</a></li>
-                    <li><a href="#highlights">Destaques</a></li>
-                    <li><a href="#products">Produtos</a></li>
-                    <li><a href="#about">Sobre</a></li>
-                    <li><a href="#contact">Contato</a></li>
+            <div class="menu-overlay"></div>
+            
+            <nav class="mobile-menu">
+                <ul class="mobile-nav-list">
+                    <li class="mobile-nav-item"><a href="#home" class="mobile-nav-link">Início</a></li>
+                    <li class="mobile-nav-item"><a href="#highlights" class="mobile-nav-link">Destaques</a></li>
+                    <li class="mobile-nav-item"><a href="#products" class="mobile-nav-link">Produtos</a></li>
+                    <li class="mobile-nav-item"><a href="#about" class="mobile-nav-link">Sobre</a></li>
+                    <li class="mobile-nav-item"><a href="#contact" class="mobile-nav-link">Contato</a></li>
                 </ul>
-                <div class="header-actions">
-                    <a href="#"><i class="fas fa-search"></i></a>
+                <div class="mobile-nav-actions">
+                    <a href="#" class="nav-icon"><i class="fas fa-search"></i></a>
                 </div>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Resto do conteúdo permanece igual -->
     <section class="hero" id="home">
         <div class="hero-bg"></div>
         <div class="container">
@@ -1706,46 +1668,36 @@
                 productsGrid.appendChild(productCard);
             });
 
-            // NAVEGAÇÃO MOBILE COMPLETAMENTE REFEITA
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const mobileNav = document.querySelector('.mobile-nav');
+            // NOVA IMPLEMENTAÇÃO DO MENU MOBILE
+            const hamburgerBtn = document.querySelector('.hamburger-btn');
+            const mobileMenu = document.querySelector('.mobile-menu');
+            const menuOverlay = document.querySelector('.menu-overlay');
             const body = document.querySelector('body');
             
-            mobileMenuBtn.addEventListener('click', function() {
-                mobileNav.classList.toggle('active');
-                mobileMenuBtn.classList.toggle('active');
-                
-                // Prevenir scroll quando menu estiver aberto
-                if (mobileNav.classList.contains('active')) {
-                    body.style.overflow = 'hidden';
-                    mobileMenuBtn.setAttribute('aria-label', 'Fechar menu');
-                } else {
-                    body.style.overflow = '';
-                    mobileMenuBtn.setAttribute('aria-label', 'Abrir menu');
-                }
+            // Abrir/fechar menu
+            hamburgerBtn.addEventListener('click', function() {
+                mobileMenu.classList.toggle('active');
+                menuOverlay.classList.toggle('active');
+                hamburgerBtn.classList.toggle('active');
+                body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+            });
+
+            // Fechar menu ao clicar no overlay
+            menuOverlay.addEventListener('click', function() {
+                mobileMenu.classList.remove('active');
+                menuOverlay.classList.remove('active');
+                hamburgerBtn.classList.remove('active');
+                body.style.overflow = '';
             });
 
             // Fechar menu ao clicar em um link
-            document.querySelectorAll('.mobile-nav a').forEach(link => {
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
                 link.addEventListener('click', function() {
-                    mobileNav.classList.remove('active');
-                    mobileMenuBtn.classList.remove('active');
+                    mobileMenu.classList.remove('active');
+                    menuOverlay.classList.remove('active');
+                    hamburgerBtn.classList.remove('active');
                     body.style.overflow = '';
-                    mobileMenuBtn.setAttribute('aria-label', 'Abrir menu');
                 });
-            });
-
-            // Fechar menu ao clicar fora dele
-            document.addEventListener('click', function(event) {
-                const isClickInsideNav = mobileNav.contains(event.target);
-                const isClickOnMenuButton = mobileMenuBtn.contains(event.target);
-                
-                if (!isClickInsideNav && !isClickOnMenuButton && mobileNav.classList.contains('active')) {
-                    mobileNav.classList.remove('active');
-                    mobileMenuBtn.classList.remove('active');
-                    body.style.overflow = '';
-                    mobileMenuBtn.setAttribute('aria-label', 'Abrir menu');
-                }
             });
 
             // Formulário de contato
@@ -1819,21 +1771,6 @@
                     });
                 }
             }
-            
-            // Correção para Safari iOS - garantir que o site ocupe toda a largura
-            function fixSafariWidth() {
-                const viewportWidth = window.innerWidth;
-                const bodyWidth = document.body.clientWidth;
-                
-                if (bodyWidth < viewportWidth) {
-                    document.body.style.width = '100%';
-                    document.body.style.overflowX = 'hidden';
-                }
-            }
-            
-            // Executar a correção quando a página carregar e quando a janela for redimensionada
-            fixSafariWidth();
-            window.addEventListener('resize', fixSafariWidth);
         });
     </script>
 </body>
