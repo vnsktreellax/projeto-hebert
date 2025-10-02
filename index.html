@@ -1064,6 +1064,90 @@
             transition: width 0.3s ease;
         }
 
+        /* ========== MEDIA QUERY PARA TELAS 770px - 1024px ========== */
+        @media (min-width: 770px) and (max-width: 1024px) {
+            /* Ajuste do espaçamento do hero para não colidir com o navbar */
+            .hero {
+                margin-top: 90px;
+                padding-top: 20px;
+            }
+            
+            /* Ajuste do container do hero */
+            .hero-container {
+                gap: 30px;
+                padding-top: 20px;
+            }
+            
+            /* Ajuste do título e conteúdo do hero */
+            .hero-title {
+                font-size: 2.8rem;
+                margin-top: 10px;
+            }
+            
+            .hero-content {
+                padding-top: 20px;
+            }
+            
+            /* Ajuste da imagem 3D e produtos flutuantes */
+            .hero-image-container {
+                height: 450px;
+                margin-top: 20px;
+            }
+            
+            .image-frame {
+                max-width: 320px;
+                height: 420px;
+            }
+            
+            /* Reposicionamento dos produtos flutuantes - AJUSTADO */
+            .floating-product {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .floating-product:nth-child(1) {
+                top: 5%;
+                left: 5%;
+                animation-delay: 0s;
+            }
+            
+            .floating-product:nth-child(2) {
+                bottom: 15%;
+                right: 5%;
+                animation-delay: 2s;
+            }
+            
+            .floating-product:nth-child(3) {
+                top: 50%;
+                left: 5%;
+                animation-delay: 4s;
+            }
+            
+            /* Ajuste das seções para melhor espaçamento */
+            .highlights, 
+            .products, 
+            .about, 
+            .contact {
+                padding: 70px 0;
+            }
+            
+            /* Ajuste do grid de produtos */
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+                gap: 25px;
+            }
+            
+            /* Ajuste do container de contato */
+            .contact-container {
+                gap: 50px;
+            }
+            
+            /* Melhorias no footer */
+            .footer-content {
+                gap: 35px;
+            }
+        }
+
         /* ========== RESPONSIVIDADE ========== */
 
         /* Tablets e laptops pequenos */
@@ -1168,18 +1252,18 @@
             
             /* Ajuste dos produtos flutuantes para telas menores */
             .floating-product:nth-child(1) {
-                top: 15%;
-                left: 5px;
+                top: 10%;
+                left: 10%;
             }
             
             .floating-product:nth-child(2) {
-                bottom: 25%;
-                right: 5px;
+                bottom: 20%;
+                right: 10%;
             }
             
             .floating-product:nth-child(3) {
-                top: 55%;
-                left: 5px;
+                top: 60%;
+                left: 10%;
             }
         }
 
@@ -1213,17 +1297,17 @@
             
             .floating-product:nth-child(1) {
                 top: 10%;
-                left: 10px;
+                left: 10%;
             }
             
             .floating-product:nth-child(2) {
                 bottom: 20%;
-                right: 10px;
+                right: 10%;
             }
             
             .floating-product:nth-child(3) {
                 top: 60%;
-                left: 10px;
+                left: 10%;
             }
             
             .section-title {
@@ -1303,17 +1387,17 @@
             
             .floating-product:nth-child(1) {
                 top: 5%;
-                left: 15px;
+                left: 15%;
             }
             
             .floating-product:nth-child(2) {
                 bottom: 15%;
-                right: 15px;
+                right: 15%;
             }
             
             .floating-product:nth-child(3) {
                 top: 65%;
-                left: 15px;
+                left: 15%;
             }
             
             /* Ajustes finos para elementos muito pequenos */
